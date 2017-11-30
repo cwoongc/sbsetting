@@ -1,0 +1,32 @@
+<!--?xml version="1.0" encoding="UTF-8" ?-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwoongc.sbsetting.api.user.mapper.UserServiceTestMapper">
+
+    <select id="selectUser" parameterType="Long" resultType="UserVO">
+        SELECT
+         #{id} "ID"
+         ,'cwoongc' "NAME"
+         ,'01' AS "USER_EXAMPLE_CD"
+        FROM dual
+    </select>
+
+    <insert id="insertUser" parameterType="UserExampleEntity">
+        INSERT INTO USER_EXAMPLE(id, name)
+        VALUES (#{id}, #{name})
+    </insert>
+
+    <update id="updateUser" parameterType="UserExampleEntity">
+        UPDATE USER_EXAMPLE
+        SET NAME = #{name}
+           ,USER_EXAMPLE_CD = #{userExampleCd}
+        WHERE ID = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="UserExampleEntity">
+        DELETE FROM USER_EXAMPLE
+        WHERE ID = #{id}
+    </delete>
+
+
+</mapper>

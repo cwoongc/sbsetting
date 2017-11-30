@@ -1,0 +1,32 @@
+<!--?xml version="1.0" encoding="UTF-8" ?-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cwoongc.sbsetting.api.user.mapper.UserMapper">
+
+    <select id="selectUser" parameterType="Long" resultType="UserVO">
+        SELECT
+         id
+         ,name
+         ,user_example_cd
+        FROM user
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insertUser" parameterType="UserExampleEntity">
+        INSERT INTO user(id, name, user_example_cd)
+        VALUES (#{id}, #{name}, #{userExampleCd})
+    </insert>
+
+    <update id="updateUser" parameterType="UserExampleEntity">
+        UPDATE user
+        SET NAME = #{name}
+           ,USER_EXAMPLE_CD = #{userExampleCd}
+        WHERE ID = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="UserExampleEntity">
+        DELETE FROM user
+        WHERE ID = #{id}
+    </delete>
+
+</mapper>

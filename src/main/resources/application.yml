@@ -1,0 +1,72 @@
+################################################################################
+###common
+################################################################################
+
+# banner
+banner:
+  charset: UTF-8
+  location: classpath:banner.txt
+
+# embeded tomcat
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: utf-8
+
+# mybatis-spring-boot-starter 를 이용한 mybatis configuration
+# 마이바티스 스프링 부트 스타터 의존성을 사용하면
+# 1. mybatis-spring 활용
+# 2. application.yml에 mybatis.config 작성
+# 3. @Mapper 어노테이션 만으로 mapper 설정 및 자동 스캔
+# 4. 존재하는 DataSource 자동검색 및 SqlSessionFactoryBean 자동 생성 및 주입
+# 등의 auto-configuration 을 수행한다.
+# http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/
+mybatis:
+  type-aliases-package: com.cwoongc.sbsetting.api
+  executor-type: batch
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+    cache-enabled: false
+    default-executor-type: batch
+
+
+spring:
+  # spring application
+  application:
+    name: Spring Boot Settings
+
+  # Default active profile
+  profiles:
+    active: local
+
+  # HttpEncodingProperties
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+# org.springframework.boot:spring-boot-starter-jdbc
+# spring boot의 auto-configuration은 별도의 DataSource를 Bean으로 등록하지 않았다면
+# spring.datasource.* 프로퍼티를 사용하여 기본 데이터 소스를 구성한다.
+# mybatis-spring-boot-starter는 이 데이터소스로 기반으로 자동으로
+# SqlSessionFactoryBean, SqlSessionFactory, SeqlSessionTemplate등을 자동 생성
+# (한마디로 profile당 단일 데이터소스를 활용할때 사용하는 구성)
+# profile당 복수의 데이터소스를 활용하려면 ConfigurationProperties 등을 활용해야함
+  datasource:
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    platform: h2
+
+---
+################################################################################
+###local
+################################################################################
+spring:
+  profiles: local
+server:
+  port: 8080
+
